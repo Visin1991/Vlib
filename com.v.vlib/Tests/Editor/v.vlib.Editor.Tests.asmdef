@@ -1,0 +1,22 @@
+{
+    "name": "v.vlib.Editor.Tests",
+    "references": [
+        "v.vlib.Runtime",
+        "v.vlib.Editor"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+     
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+      
+    ],
+    "versionDefines": []
+}

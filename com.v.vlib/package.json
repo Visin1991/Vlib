@@ -1,0 +1,17 @@
+{
+	"dependencies": {
+
+    }, 
+	"description": "A collection of Tools & Utility Functions",
+	"displayName": "Vlib",
+	"name": "com.v.vlib",
+	"repoPackagePath": "com.v.vlib", 
+	"repository": {
+        "revision": "111c625fdf4bdfbd3d24c825658adf54b550f5a4", 
+        "type": "git", 
+        "url": "ssh://git@github.com/Unity-Technologies/ScriptableRenderLoop.git"
+    }, 
+	"unity": "2019.1", 
+    "unityRelease": "3f1", 
+    "version": "5.16.1"
+}

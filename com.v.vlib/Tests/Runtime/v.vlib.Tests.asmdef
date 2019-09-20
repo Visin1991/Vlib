@@ -1,0 +1,12 @@
+{
+    "name": "v.vlib.Runtime.Tests",
+    "references": [
+        "v.vlib.Runtime"
+    ],
+    "optionalUnityReferences": [
+        
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true
+}
