@@ -20,7 +20,7 @@ public class V_Unity_PackagCreator : EditorWindow
 
     string NameSpace = "V";
     string PackageDescription = "this is a template package";
-    string DisplayName = "Template";
+    string ProjectName = "Template";
     string UnityVersion = "2019.1";
     string PackageVersion = "0.0.1";
     private void OnGUI()
@@ -37,7 +37,7 @@ public class V_Unity_PackagCreator : EditorWindow
 
         GUILayout.BeginHorizontal();
         GUILayout.Label("DisplayName : ", GUILayout.MaxWidth(100));
-        DisplayName = GUILayout.TextField(DisplayName);
+        ProjectName = GUILayout.TextField(ProjectName);
         GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();
@@ -56,22 +56,22 @@ public class V_Unity_PackagCreator : EditorWindow
 
         if (GUILayout.Button("Create Package"))
         {
-            string path = EditorUtility.SaveFolderPanel("Select Package Location", "", "");
+            string path = EditorUtility.SaveFolderPanel("Select Package Location", "F:/VUnityPakage", "");
             if (String.IsNullOrEmpty(path))
             {
                 Debug.Log("Invalid Directory Path");
                 return;
             }
 
-            CreatePakcgeAndJson(path);
+            CreatePackage(path);
 
             window.Close();
         }
     }
 
-    void CreatePakcgeAndJson(string path)
+    void CreatePackage(string path)
     {
-        string packageName = ("com." + NameSpace + "." + DisplayName).ToLower();
+        string packageName = ("com." + NameSpace + "." + ProjectName).ToLower();
         string directoryPath = path + "/" + packageName;
         DirectoryInfo directoryInfo = Directory.CreateDirectory(directoryPath);
         if (directoryInfo.Exists)
@@ -90,7 +90,7 @@ public class V_Unity_PackagCreator : EditorWindow
             //-----------------------------------------------
 
             packageInfo.Append("    " + StringColonPare_n("description", PackageDescription) + ",\n");
-            packageInfo.Append("    " + StringColonPare_n("displayName", DisplayName) + ",\n");
+            packageInfo.Append("    " + StringColonPare_n("displayName", ProjectName) + ",\n");
             packageInfo.Append("    " + StringColonPare_n("name", packageName) + ",\n");
             packageInfo.Append("    " + StringColonPare_n("repoPackagePath", packageName) + ",\n");
 
@@ -120,6 +120,14 @@ public class V_Unity_PackagCreator : EditorWindow
                 CreateTestFolderContent(directoryPath + "/" + "Tests");
             }
 
+            string initLog =NameSpace + " " + "Project: " +  System.DateTime.Now.ToString();
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append(NameSpace);
+
+            V.VIO.WriteToFile(sb.ToString(), directoryPath + "/" + "CHANGELOG.txt");
+            V.VIO.WriteToFile(sb.ToString(), directoryPath + "/" + "LICENSE.md");
+            V.VIO.WriteToFile(sb.ToString(), directoryPath + "/" + "README.txt");
 
         }
     }
@@ -129,7 +137,7 @@ public class V_Unity_PackagCreator : EditorWindow
         StringBuilder runtimeAsdef = new StringBuilder();
         runtimeAsdef.Append("{\n");
 
-        runtimeAsdef.Append("   " + StringColonPare_n("name", NameSpace + "." + DisplayName + "." + "Runtime") + ",\n");
+        runtimeAsdef.Append("   " + StringColonPare_n("name", NameSpace + "." + ProjectName + "." + "Runtime") + ",\n");
         string content = "   \"references\": [],\n" +
                          "   \"optionalUnityReferences\": [],\n" +
                          "   \"includePlatforms\": [],\n" +
@@ -142,7 +150,7 @@ public class V_Unity_PackagCreator : EditorWindow
                          "   \"versionDefines\": []\n";
         runtimeAsdef.Append(content);
         runtimeAsdef.Append("}");
-        V.VIO.WriteToFile(runtimeAsdef.ToString(), path + "/" + NameSpace + "." + DisplayName + "." + "Runtime." + "asmdef");
+        V.VIO.WriteToFile(runtimeAsdef.ToString(), path + "/" + NameSpace + "." + ProjectName + "." + "Runtime." + "asmdef");
     }
 
     void CreateEditorAssemblyDefenition(string path)
@@ -150,11 +158,11 @@ public class V_Unity_PackagCreator : EditorWindow
         StringBuilder runtimeAsdef = new StringBuilder();
         runtimeAsdef.Append("{\n");
 
-        runtimeAsdef.Append("   " + StringColonPare_n("name", NameSpace + "." + DisplayName + "." + "Editor") + ",\n");
+        runtimeAsdef.Append("   " + StringColonPare_n("name", NameSpace + "." + ProjectName + "." + "Editor") + ",\n");
 
         runtimeAsdef.Append("   " + "\"references\":\n");
         runtimeAsdef.Append("   [\n");
-        runtimeAsdef.Append("       " + "\"" + NameSpace + "." + DisplayName + ".Runtime" + "\"\n");
+        runtimeAsdef.Append("       " + "\"" + NameSpace + "." + ProjectName + ".Runtime" + "\"\n");
         runtimeAsdef.Append("   ],\n");
 
         string content = 
@@ -169,7 +177,7 @@ public class V_Unity_PackagCreator : EditorWindow
                          "   \"versionDefines\": []\n";
         runtimeAsdef.Append(content);
         runtimeAsdef.Append("}");
-        V.VIO.WriteToFile(runtimeAsdef.ToString(), path + "/" + NameSpace + "." + DisplayName + "." + "Editor." + "asmdef");
+        V.VIO.WriteToFile(runtimeAsdef.ToString(), path + "/" + NameSpace + "." + ProjectName + "." + "Editor." + "asmdef");
     }
 
     void CreateTestFolderContent(string path)
@@ -191,11 +199,11 @@ public class V_Unity_PackagCreator : EditorWindow
         StringBuilder test = new StringBuilder();
         test.Append("{\n");
 
-        test.Append("   " + StringColonPare_n("name", NameSpace + "." + DisplayName + ".Editor.Tests") + ",\n");
+        test.Append("   " + StringColonPare_n("name", NameSpace + "." + ProjectName + ".Editor.Tests") + ",\n");
         test.Append("   " + "\"references\":\n");
         test.Append("   [\n");
-        test.Append("       " + "\"" + NameSpace + "." + DisplayName + ".Runtime" + "\",\n");
-        test.Append("       " + "\"" + NameSpace + "." + DisplayName + ".Editor" + "\"\n");
+        test.Append("       " + "\"" + NameSpace + "." + ProjectName + ".Runtime" + "\",\n");
+        test.Append("       " + "\"" + NameSpace + "." + ProjectName + ".Editor" + "\"\n");
         test.Append("   ],\n");
 
         string content = "   \"optionalUnityReferences\": [],\n" +
@@ -209,7 +217,7 @@ public class V_Unity_PackagCreator : EditorWindow
                          "   \"versionDefines\": []\n";
         test.Append(content);
         test.Append("}");
-        V.VIO.WriteToFile(test.ToString(), path + "/" + NameSpace + "." + DisplayName + ".Editor.Tests.asmdef");
+        V.VIO.WriteToFile(test.ToString(), path + "/" + NameSpace + "." + ProjectName + ".Editor.Tests.asmdef");
     }
 
     void CreateTestRuntimeAssemblyDefenition(string path)
@@ -217,10 +225,10 @@ public class V_Unity_PackagCreator : EditorWindow
         StringBuilder test = new StringBuilder();
         test.Append("{\n");
 
-        test.Append("   " + StringColonPare_n("name", NameSpace + "." + DisplayName + ".Runtime.Tests") +",\n");
+        test.Append("   " + StringColonPare_n("name", NameSpace + "." + ProjectName + ".Runtime.Tests") +",\n");
         test.Append("   " + "\"references\":\n");
         test.Append("   [\n");
-        test.Append("       " + "\"" + NameSpace + "." + DisplayName + ".Runtime" + "\"\n");
+        test.Append("       " + "\"" + NameSpace + "." + ProjectName + ".Runtime" + "\"\n");
         test.Append("   ],\n");
 
         string content = "   \"optionalUnityReferences\": [],\n" +
@@ -234,7 +242,7 @@ public class V_Unity_PackagCreator : EditorWindow
                          "   \"versionDefines\": []\n";
         test.Append(content);
         test.Append("}");
-        V.VIO.WriteToFile(test.ToString(), path + "/" + NameSpace + "." + DisplayName + ".Runtime.Tests.asmdef");
+        V.VIO.WriteToFile(test.ToString(), path + "/" + NameSpace + "." + ProjectName + ".Runtime.Tests.asmdef");
     }
 
 
