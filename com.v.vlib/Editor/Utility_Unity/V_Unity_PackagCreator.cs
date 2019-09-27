@@ -9,10 +9,11 @@ using System.Text;
 
 public class V_Unity_PackagCreator : EditorWindow
 {
+    static V_Unity_PackagCreator window;
     [MenuItem("V/Package/Create Package")]
     static void CreateWindow()
     {
-        V_Unity_PackagCreator window = EditorWindow.GetWindow<V_Unity_PackagCreator>();
+        window = EditorWindow.GetWindow<V_Unity_PackagCreator>();
         window.maxSize = new Vector2(700, 100);
         window.Show();
     }
@@ -64,6 +65,7 @@ public class V_Unity_PackagCreator : EditorWindow
 
             CreatePakcgeAndJson(path);
 
+            window.Close();
         }
     }
 
@@ -149,7 +151,13 @@ public class V_Unity_PackagCreator : EditorWindow
         runtimeAsdef.Append("{\n");
 
         runtimeAsdef.Append("   " + StringColonPare_n("name", NameSpace + "." + DisplayName + "." + "Editor") + ",\n");
-        string content = "   \"references\": [],\n" +
+
+        runtimeAsdef.Append("   " + "\"references\":\n");
+        runtimeAsdef.Append("   [\n");
+        runtimeAsdef.Append("       " + "\"" + NameSpace + "." + DisplayName + ".Runtime" + "\"\n");
+        runtimeAsdef.Append("   ],\n");
+
+        string content = 
                          "   \"optionalUnityReferences\": [],\n" +
                          "   \"includePlatforms\": [\"Editor\"],\n" +
                          "   \"excludePlatforms\": [],\n" +
