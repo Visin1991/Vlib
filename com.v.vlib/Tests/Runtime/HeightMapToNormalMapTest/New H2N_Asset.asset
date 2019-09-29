@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae80f96fe3ec9b40a1f0f06cc9fedc7, type: 3}
+  m_Name: New H2N_Asset
+  m_EditorClassIdentifier: 
+  setting:
+    heightMap: {fileID: 2800000, guid: 18f0752975a863b479ea8bb54a38fc02, type: 3}
+    normalMapSetting:
+      preBlur:
+        iteration: 0
+        sampleFactor: 1
+      sobeNormal_Filter:
+        bumpEffect: 0.5
+      postBlur:
+        iteration: 1
+        sampleFactor: 1
+    heightMapSetting:
+      preBlur:
+        iteration: 0
+        sampleFactor: 1
+      factor: 1
+      postBlur:
+        iteration: 0
+        sampleFactor: 1
+    combiner:
+      mode: 1
+    destinationMap: {fileID: 2800000, guid: 39b7d57cf86f6904abfa28b5a17caa78, type: 3}
+    customDestinationWidth: 0
+    customDestinationHeight: 0
