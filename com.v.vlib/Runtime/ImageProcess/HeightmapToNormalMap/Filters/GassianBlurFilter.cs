@@ -32,18 +32,16 @@ namespace V
                 rt2 = RenderTexture.GetTemporary(rtd);
 
                 //Copy Sourcce to rt1
-                Debug.Log("Copy......");
                 Graphics.Blit(source, rt1);
 
                 //Iteration rt1 <=> rt2
                 for (var i = 0; i < iteration; i++)
                 {
-                    Debug.Log("Do Bluring Iteration");
                     Graphics.Blit(rt1, rt2, blurMaterial, 1);   // Bluring Horizontal
                     Graphics.Blit(rt2, rt1, blurMaterial, 2);   // Bluring Vertical
                 }
 
-                Debug.Log("Set to Destination");
+          
                 //Final blit rt1 to destination
                 Graphics.Blit(rt1, destination);    //Quarter downsampler!!! Is it necessary ? this should be done in hardware
 
