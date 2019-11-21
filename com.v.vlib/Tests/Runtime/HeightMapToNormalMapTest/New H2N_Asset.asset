@@ -32,7 +32,7 @@ MonoBehaviour:
         iteration: 0
         sampleFactor: 1
     combiner:
-      mode: 1
+      mode: 0
     destinationMap: {fileID: 2800000, guid: 39b7d57cf86f6904abfa28b5a17caa78, type: 3}
     customDestinationWidth: 0
     customDestinationHeight: 0

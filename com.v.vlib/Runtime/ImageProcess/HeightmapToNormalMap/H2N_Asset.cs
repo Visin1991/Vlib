@@ -12,6 +12,8 @@ namespace V
     {
         public H2N_Setting setting = new H2N_Setting()
         {
+
+
             //Height Map Bluring Filter
             heightMapSetting = new HeightMap_BlurFilter()
             {

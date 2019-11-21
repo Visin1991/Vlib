@@ -15,7 +15,7 @@ namespace V
             {
                 string directory = EditorUtility.OpenFolderPanel("Save", "Assets/KGame", "");
                 if (!directory.Contains(VIO.WorkSpace())) { return; }
-                VIO.CopyMeshToDst(obj.GetComponent<MeshFilter>(), directory, false);
+                VIO.MeshUtil.CopyMeshToDst(obj.GetComponent<MeshFilter>(), directory, false);
                 AssetDatabase.Refresh();
             }
         }

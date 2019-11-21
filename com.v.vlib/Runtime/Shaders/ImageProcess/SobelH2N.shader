@@ -73,25 +73,25 @@
 					float3x3 c;
 					float4 col;
 					col = tex2D(color_map,tc + float2(-d.x,-d.y));
-					c[0][0] = (col.r + col.g + col.b) * col.a / 3;
+					c[0][0] = col.r;
 					col = tex2D(color_map,tc + float2(0,-d.y));
-					c[0][1] = (col.r + col.g + col.b) * col.a / 3;
+					c[0][1] = col.r;
 					col = tex2D(color_map,tc + float2(d.x,-d.y));
-					c[0][2] = (col.r + col.g + col.b) * col.a / 3;
+					c[0][2] = col.r;
 
 					col = tex2D(color_map,tc + float2(-d.x, 0));
-					c[1][0] = (col.r + col.g + col.b) * col.a / 3;
+					c[1][0] = col.r;
 					col = tex2D(color_map,tc);
-					c[1][1] = (col.r + col.g + col.b) * col.a / 3;
+					c[1][1] = col.r;
 					col = tex2D(color_map,tc + float2(d.x, 0));
-					c[1][2] = (col.r + col.g + col.b) * col.a / 3;
+					c[1][2] = col.r;
 
 					col = tex2D(color_map,tc + float2(-d.x, d.y));
-					c[2][0] = (col.r + col.g + col.b) * col.a / 3;
+					c[2][0] = col.r;
 					col = tex2D(color_map,tc + float2(0, d.y));
-					c[2][1] = (col.r + col.g + col.b) * col.a / 3;
+					c[2][1] = col.r;
 					col = tex2D(color_map,tc + float2(d.x, d.y));
-					c[2][2] = (col.r + col.g + col.b) * col.a / 3;
+					c[2][2] = col.r;
 
 					return c;
 				}

@@ -84,6 +84,7 @@ namespace V
             {
                 Graphics.Blit(source, rt, mat_ColorToGrayScale);
             }
+
             return rt;
         }
     }
