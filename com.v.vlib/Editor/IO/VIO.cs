@@ -520,6 +520,8 @@ namespace V
 
 
                 //===========================================iOS Setting============================================================
+
+#if UNITY_IOS
                 Importer.textureCompression = TextureImporterCompression.Compressed;
                 TextureImporterPlatformSettings iosSetting = Importer.GetPlatformTextureSettings("iPhone");
                 iosSetting.overridden = true;
@@ -550,6 +552,8 @@ namespace V
                 }
                 Importer.SetPlatformTextureSettings(iosSetting);
 
+#endif
+
                 //===========================================Android Setting============================================================
                 TextureImporterPlatformSettings androidSetting = Importer.GetPlatformTextureSettings("Android");
                 androidSetting.overridden = true;
@@ -559,27 +563,27 @@ namespace V
                     //TODO 
                     // On Android Platform, We ETC2_RGBA8 for HDR and Lightmap.  However this is a not proper way to do this.
                     // And we should do something else.
-                    iosSetting.format = TextureImporterFormat.ETC2_RGBA8;
+                    androidSetting.format = TextureImporterFormat.ETC2_RGBA8;
                     androidSetting.compressionQuality = 100;
                 }
                 else if (vformat == VTextureFormat.RGB)
                 {
-                    iosSetting.format = TextureImporterFormat.ETC2_RGB4;
+                    androidSetting.format = TextureImporterFormat.ETC2_RGB4;
                     androidSetting.compressionQuality = 50;
                 }
                 else if (vformat == VTextureFormat.R8)
                 {
-                    iosSetting.format = TextureImporterFormat.R8;
+                    androidSetting.format = TextureImporterFormat.R8;
                     androidSetting.compressionQuality = 50;
                 }
                 else if (vformat == VTextureFormat.R16)
                 {
-                    iosSetting.format = TextureImporterFormat.R16;
+                    androidSetting.format = TextureImporterFormat.R16;
                     androidSetting.compressionQuality = 50;
                 }
                 else
                 {
-                    iosSetting.format = TextureImporterFormat.ETC2_RGBA8;
+                    androidSetting.format = TextureImporterFormat.ETC2_RGBA8;
                     androidSetting.compressionQuality = 100;
                 }
 
@@ -592,28 +596,28 @@ namespace V
                 defaultSetting.maxTextureSize = 4096;
                 if (vformat == VTextureFormat.HDR)
                 {
-                    iosSetting.format = TextureImporterFormat.RGBAHalf;
-                    androidSetting.compressionQuality = 100;
+                    defaultSetting.format = TextureImporterFormat.RGBAHalf;
+                    defaultSetting.compressionQuality = 100;
                 }
                 else if (vformat == VTextureFormat.RGB)
                 {
-                    iosSetting.format = TextureImporterFormat.RGB24;
-                    androidSetting.compressionQuality = 50;
+                    defaultSetting.format = TextureImporterFormat.RGB24;
+                    defaultSetting.compressionQuality = 50;
                 }
                 else if (vformat == VTextureFormat.R8)
                 {
-                    iosSetting.format = TextureImporterFormat.R8;
-                    androidSetting.compressionQuality = 50;
+                    defaultSetting.format = TextureImporterFormat.R8;
+                    defaultSetting.compressionQuality = 50;
                 }
                 else if (vformat == VTextureFormat.R16)
                 {
-                    iosSetting.format = TextureImporterFormat.R16;
-                    androidSetting.compressionQuality = 50;
+                    defaultSetting.format = TextureImporterFormat.R16;
+                    defaultSetting.compressionQuality = 50;
                 }
                 else
                 {
-                    iosSetting.format = TextureImporterFormat.RGBA32;
-                    androidSetting.compressionQuality = 100;
+                    defaultSetting.format = TextureImporterFormat.RGBA32;
+                    defaultSetting.compressionQuality = 100;
                 }
                 Importer.SetPlatformTextureSettings(defaultSetting);
 
@@ -623,28 +627,28 @@ namespace V
                 standaloneSetting.maxTextureSize = 4096;
                 if (vformat == VTextureFormat.HDR)
                 {
-                    iosSetting.format = TextureImporterFormat.RGBAHalf;
-                    androidSetting.compressionQuality = 100;
+                    standaloneSetting.format = TextureImporterFormat.RGBAHalf;
+                    standaloneSetting.compressionQuality = 100;
                 }
                 else if (vformat == VTextureFormat.RGB)
                 {
-                    iosSetting.format = TextureImporterFormat.DXT1;
-                    androidSetting.compressionQuality = 50;
+                    standaloneSetting.format = TextureImporterFormat.DXT1;
+                    standaloneSetting.compressionQuality = 50;
                 }
                 else if (vformat == VTextureFormat.R8)
                 {
-                    iosSetting.format = TextureImporterFormat.R8;
-                    androidSetting.compressionQuality = 50;
+                    standaloneSetting.format = TextureImporterFormat.R8;
+                    standaloneSetting.compressionQuality = 50;
                 }
                 else if (vformat == VTextureFormat.R16)
                 {
-                    iosSetting.format = TextureImporterFormat.R16;
-                    androidSetting.compressionQuality = 50;
+                    standaloneSetting.format = TextureImporterFormat.R16;
+                    standaloneSetting.compressionQuality = 50;
                 }
                 else
                 {
-                    iosSetting.format = TextureImporterFormat.DXT5;
-                    androidSetting.compressionQuality = 100;
+                    standaloneSetting.format = TextureImporterFormat.DXT5;
+                    standaloneSetting.compressionQuality = 100;
                 }
                 Importer.SetPlatformTextureSettings(standaloneSetting);
 
