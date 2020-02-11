@@ -102,21 +102,22 @@ public static class VMathUtili
             return 1 - Bias(1 - gain, 2 - 2 * x) * 0.5f;
     }
 
-    public static Vector3 Spherical(float theta, float Phi,float r)
+    public static Vector3 Spherical(float inclination, float azimuth, float r = 1.0f)
     {
         Vector3 vector3 = Vector3.zero;
-        vector3.x = r * Mathf.Sin(theta) * Mathf.Cos(Phi);
-        vector3.y = r * Mathf.Sin(theta) * Mathf.Sin(Phi);
-        vector3.z = r * Mathf.Cos(theta);
+        azimuth *= -1;
+        vector3.z = r * Mathf.Cos(inclination) * Mathf.Cos(azimuth) * -1;
+        vector3.x = r * Mathf.Cos(inclination) * Mathf.Sin(azimuth);
+        vector3.y = r * Mathf.Sin(inclination);
         return vector3;
     }
 
     public static Vector3 SphericalCoord(Vector3 pos2Center)
     {
         float r = pos2Center.x * pos2Center.x + pos2Center.y * pos2Center.y + pos2Center.z * pos2Center.z;
-        float theta = Mathf.Acos(pos2Center.z / r);
-        float phi = Mathf.Atan2(pos2Center.y, pos2Center.x);
-        return new  Vector3(theta, phi,r);
+        float inclination = Mathf.Acos(pos2Center.z / r);
+        float azimuth = Mathf.Atan2(pos2Center.y, pos2Center.x);
+        return new  Vector3(inclination, azimuth, r);
     }
 
 }
